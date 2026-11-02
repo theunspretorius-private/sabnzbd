@@ -1,25 +1,30 @@
 :root {
     /* Border radius scale */
-    --radius-sm: 4px;   /* small elements: progress bars */
-    --radius-md: 6px;   /* search bar, multi-edit toolbar, file controls */
-    --radius-lg: 8px;   /* cards, modals, notification box */
+    --radius-sm: 6px;   /* small elements: progress bars */
+    --radius-md: 8px;   /* search bar, multi-edit toolbar, file controls */
+    --radius-lg: 12px;  /* cards, modals, notification box */
+
+    /* Vibrant accent palette */
+    --clr-accent:       #6366F1;
+    --clr-accent-hover: #818CF8;
+    --clr-accent-glow:  rgba(99, 102, 241, 0.35);
 
     /* Follow the OS by default (Auto); forced by data-color-scheme below */
     color-scheme: light dark;
 
     /* Color palette — light-dark(light value, dark value) */
-    --clr-page-bg:       light-dark(#E4E4E4, black);
-    --clr-surface:       light-dark(#FFFFFF, #303030);
-    --clr-surface-alt:   light-dark(#F5F5F5, #444444);
-    --clr-surface-hover: light-dark(#E4E4E4, #666666);
-    --clr-border:        light-dark(rgba(0, 0, 0, 0.2), #555555);
-    --clr-text:          light-dark(#000000, #EBEBEB);
-    --clr-text-muted:    light-dark(#777777, #c7c7c7);
-    --clr-link:          light-dark(#000000, #EBEBEB);
-    --clr-input-bg:      light-dark(#FFFFFF, #555555);
-    --clr-input-border:  light-dark(#cccccc, #252525);
-    --clr-toggle-active:   #f9ca33;
-    --clr-toggle-inactive: light-dark(#aaaaaa, #666666);
+    --clr-page-bg:       light-dark(#E4E4E4, #0B0F19);
+    --clr-surface:       light-dark(#FFFFFF, #131B2E);
+    --clr-surface-alt:   light-dark(#F5F5F5, #1A243B);
+    --clr-surface-hover: light-dark(#E4E4E4, #243252);
+    --clr-border:        light-dark(rgba(0, 0, 0, 0.2), rgba(99, 102, 241, 0.22));
+    --clr-text:          light-dark(#000000, #F1F5F9);
+    --clr-text-muted:    light-dark(#777777, #94A3B8);
+    --clr-link:          light-dark(#000000, #818CF8);
+    --clr-input-bg:      light-dark(#FFFFFF, #0F172A);
+    --clr-input-border:  light-dark(#cccccc, #2E3C56);
+    --clr-toggle-active:   light-dark(#f9ca33, #6366F1);
+    --clr-toggle-inactive: light-dark(#aaaaaa, #334155);
 }
 
 /* The server renders the configured scheme into this attribute; empty/unknown = Auto */
@@ -93,13 +98,13 @@ a[target="_blank"] {
     text-decoration: underline !important;
 }
 .success {
-    color: #00cc22;
+    color: light-dark(#00cc22, #34D399);
 }
 .failed {
-    color: light-dark(red, #ff3333) !important;
+    color: light-dark(red, #FB7185) !important;
 }
 #rightGreyText {
-    color: light-dark(#cccccc, #c7c7c7);
+    color: light-dark(#cccccc, #94A3B8);
     width: 100%;
     text-align: right;
     padding-top: 3px;
@@ -248,6 +253,14 @@ small {
     the first applies when Night is forced, the second when the OS is dark and Light is not forced.
 ***/
 html[data-color-scheme="night" i] {
+    body {
+        background-image:
+            radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.18), transparent),
+            radial-gradient(ellipse 60% 40% at 85% 20%, rgba(139, 92, 246, 0.10), transparent),
+            radial-gradient(ellipse 50% 40% at 15% 80%, rgba(16, 185, 129, 0.08), transparent);
+        background-attachment: fixed;
+    }
+
     .language:hover,
     .quoteBlock,
     .server-disabled,
@@ -263,7 +276,20 @@ html[data-color-scheme="night" i] {
     }
 
     #inner {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-default {
+        background-color: #1E293B;
+        border-color: #334155;
+        transition: all 0.2s ease;
+    }
+
+    .btn-default:hover {
+        background-color: #28354E;
+        border-color: var(--clr-accent);
+        color: #FFFFFF;
+        box-shadow: 0 0 12px var(--clr-accent-glow);
     }
 
     /* Focus / active border */
@@ -272,14 +298,22 @@ html[data-color-scheme="night" i] {
     input:focus,
     textarea:focus,
     select:focus {
-        border-color: #707070 !important;
+        border-color: var(--clr-accent) !important;
         outline: initial !important;
-        box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 0 0 3px var(--clr-accent-glow) !important;
     }
 }
 
 @media (prefers-color-scheme: dark) {
     html:not([data-color-scheme="light" i]) {
+        body {
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.18), transparent),
+                radial-gradient(ellipse 60% 40% at 85% 20%, rgba(139, 92, 246, 0.10), transparent),
+                radial-gradient(ellipse 50% 40% at 15% 80%, rgba(16, 185, 129, 0.08), transparent);
+            background-attachment: fixed;
+        }
+
         .language:hover,
         .quoteBlock,
         .server-disabled,
@@ -295,7 +329,20 @@ html[data-color-scheme="night" i] {
         }
 
         #inner {
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-default {
+            background-color: #1E293B;
+            border-color: #334155;
+            transition: all 0.2s ease;
+        }
+
+        .btn-default:hover {
+            background-color: #28354E;
+            border-color: var(--clr-accent);
+            color: #FFFFFF;
+            box-shadow: 0 0 12px var(--clr-accent-glow);
         }
 
         /* Focus / active border */
@@ -304,9 +351,9 @@ html[data-color-scheme="night" i] {
         input:focus,
         textarea:focus,
         select:focus {
-            border-color: #707070 !important;
+            border-color: var(--clr-accent) !important;
             outline: initial !important;
-            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 0 0 3px var(--clr-accent-glow) !important;
         }
     }
 }

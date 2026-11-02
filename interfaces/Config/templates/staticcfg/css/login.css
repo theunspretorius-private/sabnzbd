@@ -2,16 +2,21 @@
     /* Follow the OS by default (Auto); forced by data-color-scheme below */
     color-scheme: light dark;
 
+    /* Vibrant accent palette */
+    --clr-accent:       #6366F1;
+    --clr-accent-hover: #818CF8;
+    --clr-accent-glow:  rgba(99, 102, 241, 0.35);
+
     /* Color palette — light-dark(light value, dark value) */
-    --clr-page-bg:    light-dark(#E4E4E4, black);
-    --clr-surface:    light-dark(#FFFFFF, #303030);
-    --clr-input-bg:   light-dark(#FFFFFF, #555555);
-    --clr-border:     light-dark(rgba(0, 0, 0, 0.15), #555555);
-    --clr-text:       light-dark(#000000, #EBEBEB);
-    --clr-text-muted: light-dark(#636363, #c7c7c7);
-    --radius-lg:      8px;
-    --clr-toggle-active:   #f9ca33;
-    --clr-toggle-inactive: light-dark(#aaaaaa, #666666);
+    --clr-page-bg:    light-dark(#E4E4E4, #0B0F19);
+    --clr-surface:    light-dark(#FFFFFF, #131B2E);
+    --clr-input-bg:   light-dark(#FFFFFF, #0F172A);
+    --clr-border:     light-dark(rgba(0, 0, 0, 0.15), rgba(99, 102, 241, 0.25));
+    --clr-text:       light-dark(#000000, #F1F5F9);
+    --clr-text-muted: light-dark(#636363, #94A3B8);
+    --radius-lg:      12px;
+    --clr-toggle-active:   light-dark(#f9ca33, #6366F1);
+    --clr-toggle-inactive: light-dark(#aaaaaa, #334155);
 }
 
 /* The server renders the configured scheme into this attribute; empty/unknown = Auto */
@@ -75,7 +80,7 @@ body {
 .form-signin .btn {
     background-color: var(--clr-input-bg);
     color: var(--clr-text);
-    border-color: light-dark(#ccc, #252525);
+    border-color: light-dark(#ccc, #2E3C56);
 }
 
 .form-signin .btn {
@@ -145,12 +150,37 @@ input[type="checkbox"]:focus-visible {
     the first applies when Night is forced, the second when the OS is dark and Light is not forced.
 ***/
 html[data-color-scheme="night" i] {
+    body {
+        background-image:
+            radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.22), transparent),
+            radial-gradient(ellipse 60% 40% at 85% 20%, rgba(139, 92, 246, 0.12), transparent),
+            radial-gradient(ellipse 50% 40% at 15% 80%, rgba(16, 185, 129, 0.08), transparent);
+        background-attachment: fixed;
+    }
+
+    .account-wall {
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .form-signin .btn {
+        background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+        border-color: rgba(165, 180, 252, 0.4);
+        color: #FFFFFF;
+        box-shadow: 0 4px 14px var(--clr-accent-glow);
+        transition: all 0.2s ease;
+    }
+
+    .form-signin .btn:hover {
+        background: linear-gradient(135deg, #818CF8 0%, #A78BFA 100%);
+        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    }
+
     /* Focus / active border */
     .form-signin input:focus,
     .form-signin .btn:focus {
-        border-color: #707070 !important;
+        border-color: var(--clr-accent) !important;
         outline: initial !important;
-        box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 0 0 3px var(--clr-accent-glow) !important;
     }
 
     .text-center a,
@@ -160,27 +190,52 @@ html[data-color-scheme="night" i] {
 
     /* Tooltip — inverted (light tooltip on dark page) */
     .tooltip-inner {
-        background-color: #E4E4E4 !important;
-        color: #000 !important;
+        background-color: #F1F5F9 !important;
+        color: #0F172A !important;
     }
 
     .tooltip.bottom .tooltip-arrow {
-        border-bottom-color: #E4E4E4 !important;
+        border-bottom-color: #F1F5F9 !important;
     }
 
     .tooltip.top .tooltip-arrow {
-        border-top-color: #E4E4E4 !important;
+        border-top-color: #F1F5F9 !important;
     }
 }
 
 @media (prefers-color-scheme: dark) {
     html:not([data-color-scheme="light" i]) {
+        body {
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.22), transparent),
+                radial-gradient(ellipse 60% 40% at 85% 20%, rgba(139, 92, 246, 0.12), transparent),
+                radial-gradient(ellipse 50% 40% at 15% 80%, rgba(16, 185, 129, 0.08), transparent);
+            background-attachment: fixed;
+        }
+
+        .account-wall {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        }
+
+        .form-signin .btn {
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            border-color: rgba(165, 180, 252, 0.4);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px var(--clr-accent-glow);
+            transition: all 0.2s ease;
+        }
+
+        .form-signin .btn:hover {
+            background: linear-gradient(135deg, #818CF8 0%, #A78BFA 100%);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+        }
+
         /* Focus / active border */
         .form-signin input:focus,
         .form-signin .btn:focus {
-            border-color: #707070 !important;
+            border-color: var(--clr-accent) !important;
             outline: initial !important;
-            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 0 0 3px var(--clr-accent-glow) !important;
         }
 
         .text-center a,
@@ -190,16 +245,16 @@ html[data-color-scheme="night" i] {
 
         /* Tooltip — inverted (light tooltip on dark page) */
         .tooltip-inner {
-            background-color: #E4E4E4 !important;
-            color: #000 !important;
+            background-color: #F1F5F9 !important;
+            color: #0F172A !important;
         }
 
         .tooltip.bottom .tooltip-arrow {
-            border-bottom-color: #E4E4E4 !important;
+            border-bottom-color: #F1F5F9 !important;
         }
 
         .tooltip.top .tooltip-arrow {
-            border-top-color: #E4E4E4 !important;
+            border-top-color: #F1F5F9 !important;
         }
     }
 }

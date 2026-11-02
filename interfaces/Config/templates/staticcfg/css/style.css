@@ -3,29 +3,37 @@
     color-scheme: light dark;
 
     /* Border radius scale */
-    --radius-sm:    4px;   /* dropdowns */
-    --radius-md:    4px;   /* inputs, buttons, section headers */
-    --radius-lg:    6px;   /* cards, modals */
+    --radius-sm:    6px;   /* dropdowns */
+    --radius-md:    8px;   /* inputs, buttons, section headers */
+    --radius-lg:    12px;  /* cards, modals */
+
+    /* Vibrant accent palette */
+    --clr-accent:          #6366F1;
+    --clr-accent-hover:    #818CF8;
+    --clr-accent-glow:     rgba(99, 102, 241, 0.35);
+    --clr-emerald:         #10B981;
+    --clr-emerald-light:   #34D399;
+    --clr-amber:           #F59E0B;
 
     /* Color palette — light-dark(light value, dark value) */
-    --clr-page-bg:         light-dark(#E4E4E4, black);     /* body/page background */
-    --clr-surface:         light-dark(#FFFFFF, #303030);   /* cards/sections (.section, #addFeed, etc.) */
-    --clr-surface-alt:     light-dark(#F8F8F8, #444444);   /* alternating rows, .alt elements */
-    --clr-surface-hover:   light-dark(#f6f6f6, #666666);   /* hovered rows and buttons */
-    --clr-border:          light-dark(#dfdede, #555555);   /* card/section borders */
-    --clr-border-subtle:   light-dark(#E5E5E5, #252525);   /* inner dividers (#subscriptions, data-row) */
-    --clr-text:            light-dark(#000000, #EBEBEB);   /* primary body text */
-    --clr-text-muted:      light-dark(#666666, #c7c7c7);   /* secondary text (.col2 p, .feed-row td) */
-    --clr-error:           light-dark(red, #ff3333);       /* errors, failed items */
-    --clr-input-bg:        light-dark(#FFFFFF, #555555);   /* form inputs, buttons */
-    --clr-input-border:    light-dark(#d4d0c8, #252525);   /* input borders */
-    --clr-toggle-active:   #f9ca33;                        /* accent color (toggles, focus rings) */
-    --clr-toggle-inactive: light-dark(#aaaaaa, #666666);   /* toggle track when off */
-    --clr-dropdown-bg:     light-dark(#FFFFFF, #444444);   /* dropdown menus */
-    --clr-modal-bg:        light-dark(#FFFFFF, #727272);   /* modal body/footer */
-    --clr-modal-header-bg: #3C3C3C;                        /* modal header (dark in both themes) */
-    --clr-table-bg:        light-dark(#FFFFFF, #555555);   /* table background */
-    --clr-table-row-alt:   light-dark(#F8F8F8, #444444);   /* alternating table row background */
+    --clr-page-bg:         light-dark(#E4E4E4, #0B0F19);     /* body/page background */
+    --clr-surface:         light-dark(#FFFFFF, #131B2E);     /* cards/sections (.section, #addFeed, etc.) */
+    --clr-surface-alt:     light-dark(#F8F8F8, #1A243B);     /* alternating rows, .alt elements */
+    --clr-surface-hover:   light-dark(#f6f6f6, #243252);     /* hovered rows and buttons */
+    --clr-border:          light-dark(#dfdede, rgba(99, 102, 241, 0.22)); /* card/section borders */
+    --clr-border-subtle:   light-dark(#E5E5E5, #1E293B);     /* inner dividers (#subscriptions, data-row) */
+    --clr-text:            light-dark(#000000, #F1F5F9);     /* primary body text */
+    --clr-text-muted:      light-dark(#666666, #94A3B8);     /* secondary text (.col2 p, .feed-row td) */
+    --clr-error:           light-dark(red, #FB7185);         /* errors, failed items */
+    --clr-input-bg:        light-dark(#FFFFFF, #0F172A);     /* form inputs, buttons */
+    --clr-input-border:    light-dark(#d4d0c8, #2E3C56);     /* input borders */
+    --clr-toggle-active:   light-dark(#f9ca33, #6366F1);     /* accent color (toggles, focus rings) */
+    --clr-toggle-inactive: light-dark(#aaaaaa, #334155);     /* toggle track when off */
+    --clr-dropdown-bg:     light-dark(#FFFFFF, #162038);     /* dropdown menus */
+    --clr-modal-bg:        light-dark(#FFFFFF, #131B2E);     /* modal body/footer */
+    --clr-modal-header-bg: light-dark(#3C3C3C, #1E293B);     /* modal header (dark in both themes) */
+    --clr-table-bg:        light-dark(#FFFFFF, #131B2E);     /* table background */
+    --clr-table-row-alt:   light-dark(#F8F8F8, #172138);     /* alternating table row background */
 }
 
 /* The server renders the configured scheme into this attribute; empty/unknown = Auto */
@@ -1668,14 +1676,28 @@ html[dir="rtl"] .Scheduling form[data-form="add-schedule"] input[type="checkbox"
     the first applies when Night is forced, the second when the OS is dark and Light is not forced.
 ***/
 html[data-color-scheme="night" i] {
-    /* Links use a custom colour in dark mode */
-    a:not(.btn) {
-        color: #63a7e1;
+    /* Ambient dark-mode gradient glow on body */
+    body {
+        background-image:
+            radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.18), transparent),
+            radial-gradient(ellipse 60% 40% at 85% 20%, rgba(139, 92, 246, 0.10), transparent),
+            radial-gradient(ellipse 50% 40% at 15% 80%, rgba(16, 185, 129, 0.08), transparent);
+        background-attachment: fixed;
     }
 
-    /* Buttons get a subtle white shadow in dark mode for depth */
+    /* Links use a vibrant indigo colour in dark mode */
+    a:not(.btn) {
+        color: var(--clr-accent-hover);
+    }
+
+    a:not(.btn):hover {
+        color: #A5B4FC;
+    }
+
+    /* Buttons get a subtle shadow and transition in dark mode */
     .btn {
-        box-shadow: 1px 1px 1px rgba(255, 255, 255, .1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        transition: all 0.2s ease;
     }
 
     /* Borders on interactive controls */
@@ -1693,9 +1715,13 @@ html[data-color-scheme="night" i] {
         background-color: var(--clr-surface-alt);
     }
 
-    /* Sidebar section header */
+    /* Sidebar section header — sleek gradient badge with accent bar */
     .col2 h3 {
-        background: none repeat scroll 0 0 var(--clr-surface-alt);
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.22) 0%, rgba(139, 92, 246, 0.14) 100%);
+        border: 1px solid rgba(99, 102, 241, 0.32);
+        border-left: 3px solid var(--clr-accent);
+        color: #F8FAFC;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     /* Various elements that need the alt surface */
@@ -1706,7 +1732,6 @@ html[data-color-scheme="night" i] {
     .navbar-default .navbar-nav>.open>a,
     .navbar-default .navbar-nav>.open>a:focus,
     .navbar-default .navbar-nav>.open>a:hover,
-    .navbar-default .navbar-nav>li>a.active,
     .navbar-default .navbar-nav>li>a:hover,
     .navbar-default .navbar-nav>li>a:focus,
     .navbar-logo:hover,
@@ -1722,19 +1747,52 @@ html[data-color-scheme="night" i] {
         color: var(--clr-text) !important;
     }
 
-    /* Button hovers */
-    .btn:not(.btn-danger):hover,
-    .btn:not(.btn-danger):active:focus {
-        background-color: var(--clr-surface-hover);
+    /* Active navbar tab — vibrant indigo highlight */
+    .navbar-default .navbar-nav>li>a.active {
+        background: linear-gradient(180deg, rgba(99, 102, 241, 0.24) 0%, rgba(99, 102, 241, 0.08) 100%) !important;
+        color: #FFFFFF !important;
+        box-shadow: inset 0 -2px 0 var(--clr-accent);
     }
 
-    .btn:not(.btn-danger):active {
+    /* Button surfaces & hovers */
+    .btn:not(.btn-danger),
+    a.btn.btn-default {
+        background-color: #1E293B;
         color: var(--clr-text);
     }
 
-    /* Error / failed colour */
+    .btn:not(.btn-danger):hover,
+    .btn:not(.btn-danger):active:focus {
+        background-color: #28354E;
+        border-color: var(--clr-accent) !important;
+        color: #FFFFFF;
+        box-shadow: 0 0 12px var(--clr-accent-glow);
+    }
+
+    .btn:not(.btn-danger):active {
+        color: #FFFFFF;
+    }
+
+    /* Primary Save buttons — vibrant indigo-to-violet gradient */
+    .saveButton:not(.btn-danger):not([disabled]) {
+        background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+        border-color: rgba(165, 180, 252, 0.4) !important;
+        color: #FFFFFF !important;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+    }
+
+    .saveButton:not(.btn-danger):not([disabled]):hover {
+        background: linear-gradient(135deg, #818CF8 0%, #A78BFA 100%);
+        box-shadow: 0 4px 16px rgba(99, 102, 241, 0.5);
+    }
+
+    /* Error / failed / success colours */
     .failed {
         color: var(--clr-error) !important;
+    }
+
+    .success {
+        color: var(--clr-emerald-light) !important;
     }
 
     /* Secondary text */
@@ -1747,16 +1805,13 @@ html[data-color-scheme="night" i] {
     .advanced-buttonSeperator,
     .alt,
     .infoTableSeperator.alt,
-    .btn:not(.btn-danger),
     .btn-default.disabled:active,
     .btn-default.disabled:focus,
     .btn-default.disabled:hover,
-    a.btn.btn-default,
     select.form-control,
     .form-control[disabled],
     .input-group-addon,
     #inner,
-    .navbar-default,
     .search-box input,
     .select,
     .table-striped>tbody>tr:nth-child(even),
@@ -1778,24 +1833,47 @@ html[data-color-scheme="night" i] {
         color: var(--clr-text);
     }
 
+    .navbar-default {
+        background: rgba(15, 23, 42, 0.90) !important;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--clr-border);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    }
+
     .Categories form.sorting-row:nth-child(2n-1) tr {
          background-color: var(--clr-surface);
     }
 
-    /* Focus / active border */
+    /* Focus / active border — vibrant indigo glow */
     .btn-default:focus,
     .form-control:focus,
     input:focus,
     textarea:focus,
     select:focus {
-        border-color: #707070 !important;
+        border-color: var(--clr-accent) !important;
         outline: initial !important;
-        box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 0 0 3px var(--clr-accent-glow) !important;
     }
 
-    /* Modal backdrop */
+    /* Modal backdrop & content */
     .modal-backdrop {
-        background-color: #262626 !important;
+        background-color: #060911 !important;
+    }
+
+    .modal-content {
+        border: 1px solid var(--clr-border);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+        border-bottom: 1px solid var(--clr-border);
+    }
+
+    .dropdown-menu {
+        border: 1px solid var(--clr-border);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
     }
 
     /* Table structural */
@@ -1812,16 +1890,35 @@ html[data-color-scheme="night" i] {
     }
 
     .modal-footer {
-        border-top: 1px solid rgb(131 131 131);
+        border-top: 1px solid var(--clr-border-subtle);
     }
 
     hr {
         border-top: 1px solid var(--clr-border);
     }
 
-    /* Danger button dark border */
+    /* Danger button vibrant crimson */
     .btn-danger {
-        border-color: #7b2b28;
+        background: linear-gradient(135deg, #E11D48 0%, #F43F5E 100%);
+        border-color: #FB7185;
+        box-shadow: 0 4px 12px rgba(244, 63, 94, 0.35);
+    }
+
+    /* Vibrant labels in Config */
+    .label-warning {
+        background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+        color: #FFFFFF;
+    }
+
+    .label-info,
+    .label-primary {
+        background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+        color: #FFFFFF;
+    }
+
+    .label-success {
+        background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+        color: #FFFFFF;
     }
 
     /* Section borders */
@@ -1876,10 +1973,20 @@ html[data-color-scheme="night" i] {
         background-color: unset !important;
     }
 
-    /* Server chart lines */
-    .Servers .ct-series-a .ct-line,
+    /* Server chart lines — vibrant indigo & glow */
+    .Servers .ct-series-a .ct-line {
+        stroke: var(--clr-accent-hover);
+        stroke-width: 2.5px;
+    }
+
     .Servers .ct-series-a .ct-point {
-        stroke: var(--clr-text);
+        stroke: var(--clr-accent);
+        stroke-width: 5px;
+    }
+
+    .Servers .ct-series-a .ct-area {
+        fill: var(--clr-accent);
+        fill-opacity: 0.2;
     }
 
     /* Sections/cards use dark surface */
@@ -1888,26 +1995,27 @@ html[data-color-scheme="night" i] {
     #addFeed,
     #addFeedContent {
         background-color: var(--clr-surface);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
 
-    /* Active tab uses card surface */
+    /* Active tab uses vibrant accent or card surface */
     .nav.nav-tabs li a {
         color: var(--clr-text);
     }
 
     .nav.nav-tabs li a:hover {
-        background-color: var(--clr-surface-alt);
+        background-color: var(--clr-surface-hover);
         border-color: var(--clr-border);
         border-bottom: none;
     }
 
     .nav.nav-tabs li.active a,
     .nav.nav-tabs li.active a:hover {
-        border-color: var(--clr-border);
+        border-color: transparent;
         border-bottom: none;
-        background-color: var(--clr-surface);
-        color: var(--clr-text);
+        background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+        color: #FFFFFF;
+        box-shadow: 0 4px 12px var(--clr-accent-glow);
     }
 
     /* QR modal needs light background */
@@ -1932,41 +2040,55 @@ html[data-color-scheme="night" i] {
 
     /* Tooltip — inverted (light tooltip on dark page) */
     .tooltip-inner {
-        background-color: #E4E4E4 !important;
-        color: #000 !important;
+        background-color: #F1F5F9 !important;
+        color: #0F172A !important;
     }
 
     .tooltip.bottom .tooltip-arrow {
-        border-bottom-color: #E4E4E4 !important;
+        border-bottom-color: #F1F5F9 !important;
     }
 
     .tooltip.top .tooltip-arrow {
-        border-top-color: #E4E4E4 !important;
+        border-top-color: #F1F5F9 !important;
     }
 
     .tooltip.left .tooltip-arrow {
-        border-left-color: #E4E4E4 !important;
+        border-left-color: #F1F5F9 !important;
     }
 
     .tooltip.right .tooltip-arrow {
-        border-right-color: #E4E4E4 !important;
+        border-right-color: #F1F5F9 !important;
     }
 
     .Special .glyphicon-asterisk {
-        color: #E4E4E4 !important;
+        color: #F1F5F9 !important;
     }
 }
 
 @media (prefers-color-scheme: dark) {
     html:not([data-color-scheme="light" i]) {
-        /* Links use a custom colour in dark mode */
-        a:not(.btn) {
-            color: #63a7e1;
+        /* Ambient dark-mode gradient glow on body */
+        body {
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.18), transparent),
+                radial-gradient(ellipse 60% 40% at 85% 20%, rgba(139, 92, 246, 0.10), transparent),
+                radial-gradient(ellipse 50% 40% at 15% 80%, rgba(16, 185, 129, 0.08), transparent);
+            background-attachment: fixed;
         }
 
-        /* Buttons get a subtle white shadow in dark mode for depth */
+        /* Links use a vibrant indigo colour in dark mode */
+        a:not(.btn) {
+            color: var(--clr-accent-hover);
+        }
+
+        a:not(.btn):hover {
+            color: #A5B4FC;
+        }
+
+        /* Buttons get a subtle shadow and transition in dark mode */
         .btn {
-            box-shadow: 1px 1px 1px rgba(255, 255, 255, .1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
         }
 
         /* Borders on interactive controls */
@@ -1984,9 +2106,13 @@ html[data-color-scheme="night" i] {
             background-color: var(--clr-surface-alt);
         }
 
-        /* Sidebar section header */
+        /* Sidebar section header — sleek gradient badge with accent bar */
         .col2 h3 {
-            background: none repeat scroll 0 0 var(--clr-surface-alt);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.22) 0%, rgba(139, 92, 246, 0.14) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.32);
+            border-left: 3px solid var(--clr-accent);
+            color: #F8FAFC;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         /* Various elements that need the alt surface */
@@ -1997,7 +2123,6 @@ html[data-color-scheme="night" i] {
         .navbar-default .navbar-nav>.open>a,
         .navbar-default .navbar-nav>.open>a:focus,
         .navbar-default .navbar-nav>.open>a:hover,
-        .navbar-default .navbar-nav>li>a.active,
         .navbar-default .navbar-nav>li>a:hover,
         .navbar-default .navbar-nav>li>a:focus,
         .navbar-logo:hover,
@@ -2013,19 +2138,52 @@ html[data-color-scheme="night" i] {
             color: var(--clr-text) !important;
         }
 
-        /* Button hovers */
-        .btn:not(.btn-danger):hover,
-        .btn:not(.btn-danger):active:focus {
-            background-color: var(--clr-surface-hover);
+        /* Active navbar tab — vibrant indigo highlight */
+        .navbar-default .navbar-nav>li>a.active {
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.24) 0%, rgba(99, 102, 241, 0.08) 100%) !important;
+            color: #FFFFFF !important;
+            box-shadow: inset 0 -2px 0 var(--clr-accent);
         }
 
-        .btn:not(.btn-danger):active {
+        /* Button surfaces & hovers */
+        .btn:not(.btn-danger),
+        a.btn.btn-default {
+            background-color: #1E293B;
             color: var(--clr-text);
         }
 
-        /* Error / failed colour */
+        .btn:not(.btn-danger):hover,
+        .btn:not(.btn-danger):active:focus {
+            background-color: #28354E;
+            border-color: var(--clr-accent) !important;
+            color: #FFFFFF;
+            box-shadow: 0 0 12px var(--clr-accent-glow);
+        }
+
+        .btn:not(.btn-danger):active {
+            color: #FFFFFF;
+        }
+
+        /* Primary Save buttons — vibrant indigo-to-violet gradient */
+        .saveButton:not(.btn-danger):not([disabled]) {
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            border-color: rgba(165, 180, 252, 0.4) !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+        }
+
+        .saveButton:not(.btn-danger):not([disabled]):hover {
+            background: linear-gradient(135deg, #818CF8 0%, #A78BFA 100%);
+            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Error / failed / success colours */
         .failed {
             color: var(--clr-error) !important;
+        }
+
+        .success {
+            color: var(--clr-emerald-light) !important;
         }
 
         /* Secondary text */
@@ -2038,16 +2196,13 @@ html[data-color-scheme="night" i] {
         .advanced-buttonSeperator,
         .alt,
         .infoTableSeperator.alt,
-        .btn:not(.btn-danger),
         .btn-default.disabled:active,
         .btn-default.disabled:focus,
         .btn-default.disabled:hover,
-        a.btn.btn-default,
         select.form-control,
         .form-control[disabled],
         .input-group-addon,
         #inner,
-        .navbar-default,
         .search-box input,
         .select,
         .table-striped>tbody>tr:nth-child(even),
@@ -2069,24 +2224,47 @@ html[data-color-scheme="night" i] {
             color: var(--clr-text);
         }
 
+        .navbar-default {
+            background: rgba(15, 23, 42, 0.90) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--clr-border);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
         .Categories form.sorting-row:nth-child(2n-1) tr {
              background-color: var(--clr-surface);
         }
 
-        /* Focus / active border */
+        /* Focus / active border — vibrant indigo glow */
         .btn-default:focus,
         .form-control:focus,
         input:focus,
         textarea:focus,
         select:focus {
-            border-color: #707070 !important;
+            border-color: var(--clr-accent) !important;
             outline: initial !important;
-            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 0 0 3px var(--clr-accent-glow) !important;
         }
 
-        /* Modal backdrop */
+        /* Modal backdrop & content */
         .modal-backdrop {
-            background-color: #262626 !important;
+            background-color: #060911 !important;
+        }
+
+        .modal-content {
+            border: 1px solid var(--clr-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            border-bottom: 1px solid var(--clr-border);
+        }
+
+        .dropdown-menu {
+            border: 1px solid var(--clr-border);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
         }
 
         /* Table structural */
@@ -2103,16 +2281,35 @@ html[data-color-scheme="night" i] {
         }
 
         .modal-footer {
-            border-top: 1px solid rgb(131 131 131);
+            border-top: 1px solid var(--clr-border-subtle);
         }
 
         hr {
             border-top: 1px solid var(--clr-border);
         }
 
-        /* Danger button dark border */
+        /* Danger button vibrant crimson */
         .btn-danger {
-            border-color: #7b2b28;
+            background: linear-gradient(135deg, #E11D48 0%, #F43F5E 100%);
+            border-color: #FB7185;
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.35);
+        }
+
+        /* Vibrant labels in Config */
+        .label-warning {
+            background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+            color: #FFFFFF;
+        }
+
+        .label-info,
+        .label-primary {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+            color: #FFFFFF;
+        }
+
+        .label-success {
+            background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+            color: #FFFFFF;
         }
 
         /* Section borders */
@@ -2167,10 +2364,20 @@ html[data-color-scheme="night" i] {
             background-color: unset !important;
         }
 
-        /* Server chart lines */
-        .Servers .ct-series-a .ct-line,
+        /* Server chart lines — vibrant indigo & glow */
+        .Servers .ct-series-a .ct-line {
+            stroke: var(--clr-accent-hover);
+            stroke-width: 2.5px;
+        }
+
         .Servers .ct-series-a .ct-point {
-            stroke: var(--clr-text);
+            stroke: var(--clr-accent);
+            stroke-width: 5px;
+        }
+
+        .Servers .ct-series-a .ct-area {
+            fill: var(--clr-accent);
+            fill-opacity: 0.2;
         }
 
         /* Sections/cards use dark surface */
@@ -2179,26 +2386,27 @@ html[data-color-scheme="night" i] {
         #addFeed,
         #addFeedContent {
             background-color: var(--clr-surface);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
         }
 
-        /* Active tab uses card surface */
+        /* Active tab uses vibrant accent or card surface */
         .nav.nav-tabs li a {
             color: var(--clr-text);
         }
 
         .nav.nav-tabs li a:hover {
-            background-color: var(--clr-surface-alt);
+            background-color: var(--clr-surface-hover);
             border-color: var(--clr-border);
             border-bottom: none;
         }
 
         .nav.nav-tabs li.active a,
         .nav.nav-tabs li.active a:hover {
-            border-color: var(--clr-border);
+            border-color: transparent;
             border-bottom: none;
-            background-color: var(--clr-surface);
-            color: var(--clr-text);
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px var(--clr-accent-glow);
         }
 
         /* QR modal needs light background */
@@ -2223,28 +2431,28 @@ html[data-color-scheme="night" i] {
 
         /* Tooltip — inverted (light tooltip on dark page) */
         .tooltip-inner {
-            background-color: #E4E4E4 !important;
-            color: #000 !important;
+            background-color: #F1F5F9 !important;
+            color: #0F172A !important;
         }
 
         .tooltip.bottom .tooltip-arrow {
-            border-bottom-color: #E4E4E4 !important;
+            border-bottom-color: #F1F5F9 !important;
         }
 
         .tooltip.top .tooltip-arrow {
-            border-top-color: #E4E4E4 !important;
+            border-top-color: #F1F5F9 !important;
         }
 
         .tooltip.left .tooltip-arrow {
-            border-left-color: #E4E4E4 !important;
+            border-left-color: #F1F5F9 !important;
         }
 
         .tooltip.right .tooltip-arrow {
-            border-right-color: #E4E4E4 !important;
+            border-right-color: #F1F5F9 !important;
         }
 
         .Special .glyphicon-asterisk {
-            color: #E4E4E4 !important;
+            color: #F1F5F9 !important;
         }
     }
 }

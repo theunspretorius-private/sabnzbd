@@ -3,29 +3,37 @@
     color-scheme: light dark;
 
     /* Border radius scale */
-    --radius-sm: 4px;   /* small elements: progress bars */
-    --radius-md: 6px;   /* search bar, multi-edit toolbar, file controls */
-    --radius-lg: 8px;   /* cards, modals, notification box */
+    --radius-sm: 6px;   /* small elements: progress bars */
+    --radius-md: 8px;   /* search bar, multi-edit toolbar, file controls */
+    --radius-lg: 12px;  /* cards, modals, notification box */
+
+    /* Vibrant accent palette */
+    --clr-accent:         #6366F1;
+    --clr-accent-hover:   #818CF8;
+    --clr-accent-glow:    rgba(99, 102, 241, 0.35);
+    --clr-emerald:        #10B981;
+    --clr-emerald-light:  #34D399;
+    --clr-amber:          #F59E0B;
 
     /* Color palette — light-dark(light value, dark value) */
-    --clr-page-bg:        light-dark(#E4E4E4, black);              /* body/page background */
-    --clr-surface:        light-dark(#FFFFFF, #727272);            /* cards, modals, notification box */
-    --clr-surface-alt:    light-dark(#F9F9F9, #444444);            /* multi-edit toolbar, alternating rows */
-    --clr-surface-hover:  light-dark(#f6f6f6, #666666);            /* hovered rows, inputs, buttons */
-    --clr-border:         light-dark(rgba(0,0,0,0.12), #808080);   /* card outlines */
-    --clr-border-subtle:  light-dark(#EBEBEB, #252525);            /* table row separators, inner borders */
-    --clr-text:           light-dark(#333333, #EBEBEB);            /* primary body text */
-    --clr-text-muted:     light-dark(#888888, #D6D6D6);            /* secondary / dimmed text */
-    --clr-error:          light-dark(red, #F95151);                /* errors, failed downloads */
-    --clr-input-bg:       light-dark(#FFFFFF, #555555);            /* form inputs, buttons */
-    --clr-input-border:   light-dark(#CCCCCC, #252525);            /* input/search borders */
-    --clr-dropdown-bg:    light-dark(#FFFFFF, #727272);            /* dropdown menus */
-    --clr-modal-bg:       light-dark(#FFFFFF, #727272);            /* modal body/footer */
-    --clr-table-bg:       light-dark(#F5F5F5, #555555);            /* table and even-row background */
-    --clr-table-row-alt:  light-dark(#FDFDFD, #444444);            /* odd striped row background */
-    --clr-progress-track: light-dark(#f6f6f6, #DADADA);            /* progress bar track */
-    --clr-toggle-active:   #f9ca33;                                /* toggle knob track: on  */
-    --clr-toggle-inactive: light-dark(#aaaaaa, #666666);           /* toggle knob track: off */
+    --clr-page-bg:        light-dark(#E4E4E4, #0B0F19);              /* body/page background */
+    --clr-surface:        light-dark(#FFFFFF, #131B2E);              /* cards, modals, notification box */
+    --clr-surface-alt:    light-dark(#F9F9F9, #1A243B);              /* multi-edit toolbar, alternating rows */
+    --clr-surface-hover:  light-dark(#f6f6f6, #243252);              /* hovered rows, inputs, buttons */
+    --clr-border:         light-dark(rgba(0,0,0,0.12), rgba(99, 102, 241, 0.22)); /* card outlines */
+    --clr-border-subtle:  light-dark(#EBEBEB, #1E293B);              /* table row separators, inner borders */
+    --clr-text:           light-dark(#333333, #F1F5F9);              /* primary body text */
+    --clr-text-muted:     light-dark(#888888, #94A3B8);              /* secondary / dimmed text */
+    --clr-error:          light-dark(red, #FB7185);                  /* errors, failed downloads */
+    --clr-input-bg:       light-dark(#FFFFFF, #0F172A);              /* form inputs, buttons */
+    --clr-input-border:   light-dark(#CCCCCC, #2E3C56);              /* input/search borders */
+    --clr-dropdown-bg:    light-dark(#FFFFFF, #162038);              /* dropdown menus */
+    --clr-modal-bg:       light-dark(#FFFFFF, #131B2E);              /* modal body/footer */
+    --clr-table-bg:       light-dark(#F5F5F5, #131B2E);              /* table and even-row background */
+    --clr-table-row-alt:  light-dark(#FDFDFD, #172138);              /* odd striped row background */
+    --clr-progress-track: light-dark(#f6f6f6, #0B0F19);              /* progress bar track */
+    --clr-toggle-active:   light-dark(#f9ca33, #6366F1);             /* toggle knob track: on  */
+    --clr-toggle-inactive: light-dark(#aaaaaa, #334155);             /* toggle knob track: off */
 }
 
 /* The server renders the configured scheme into this attribute (main.tmpl); empty/unknown = Auto */
@@ -238,8 +246,9 @@ li.dropdown {
     text-align: left;
     cursor: pointer;
     height: 10px;
-    background-color: #E5E5E5;
+    background-color: light-dark(#E5E5E5, #0B0F19);
     margin-top: 5px;
+    border-radius: 999px;
 }
 
 .ui-slider .ui-slider-handle {
@@ -249,8 +258,9 @@ li.dropdown {
     height: 24px;
     top: -7px;
     cursor: ew-resize;
-    background-color: light-dark(#767676, #969696);
-    border: 1px solid light-dark(white, #969696);
+    background-color: light-dark(#767676, #F8FAFC);
+    border: 1px solid light-dark(white, #10B981);
+    border-radius: 3px;
     margin-left: -.25em;
 }
 
@@ -262,10 +272,11 @@ li.dropdown {
     border: 0;
     top: 0;
     height: 100%;
+    border-radius: 999px;
 }
 
 .ui-slider-horizontal .ui-slider-range-min {
-    background-color: #9DDB72;
+    background-color: light-dark(#9DDB72, #10B981);
     left: 0;
 }
 
@@ -398,9 +409,9 @@ li.dropdown {
     width: 400px;
     top: 40px;
     left: -370px;
-    background: light-dark(white, #555555);
+    background: light-dark(white, #162038);
     color: var(--clr-text);
-    border: 1px solid rgba(0,0,0,.2);
+    border: 1px solid var(--clr-border);
     border-radius: var(--radius-md);
     transition-duration: 0.3s;
     height: 115px;
@@ -2504,7 +2515,7 @@ legend {
 .modal-footer {
     margin-top: 0;
     background-color: var(--clr-modal-bg);
-    border-top: 1px solid light-dark(#e5e5e5, rgb(131, 131, 131));
+    border-top: 1px solid light-dark(#e5e5e5, var(--clr-border-subtle));
 }
 
 .modal-dialog {
@@ -2522,11 +2533,11 @@ legend {
 }
 
 legend {
-    border-color: light-dark(#888888, #C6C6C6);
+    border-color: light-dark(#888888, var(--clr-border-subtle));
 }
 
 hr {
-    border-color: light-dark(#888888, #C6C6C6);
+    border-color: light-dark(#888888, var(--clr-border-subtle));
 }
 
 /* Bootstrap's `a:focus { outline: 5px auto -webkit-focus-ring-color }` renders as a
@@ -2664,6 +2675,15 @@ h2 small {
     the first applies when Night is forced, the second when the OS is dark and Light is not forced.
 ***/
 html[data-color-scheme="night" i] {
+    /* Ambient dark-mode gradient glow on body */
+    body {
+        background-image:
+            radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.18), transparent),
+            radial-gradient(ellipse 60% 40% at 85% 20%, rgba(139, 92, 246, 0.10), transparent),
+            radial-gradient(ellipse 50% 40% at 15% 80%, rgba(16, 185, 129, 0.08), transparent);
+        background-attachment: fixed;
+    }
+
     /* Links and glyphicons inside links */
     a, a:active,
     a:hover,
@@ -2679,48 +2699,237 @@ html[data-color-scheme="night" i] {
         color: var(--clr-text);
     }
 
+    a:hover:not(.btn):not(.hover-button) {
+        color: var(--clr-accent-hover);
+    }
+
     /* Navbar needs structural dark-mode overrides */
     nav {
-        background-color: #444444 !important;
+        background: linear-gradient(135deg, rgba(22, 31, 53, 0.92) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--clr-border) !important;
         border-radius: var(--radius-lg);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
     }
 
     nav .btn {
-        background-color: #E4E4E4;
-        border-color: #5D5D5D !important;
+        background-color: #1E293B;
+        color: var(--clr-text) !important;
+        border-color: #334155 !important;
+        transition: all 0.2s ease;
+    }
+
+    nav .btn:hover,
+    nav .btn:focus,
+    nav .open > .dropdown-toggle.btn {
+        background-color: #28354E;
+        color: #FFFFFF !important;
+        border-color: var(--clr-accent) !important;
+        box-shadow: 0 0 12px var(--clr-accent-glow) !important;
     }
 
     nav .btn:active {
-        /* Restore bootstrap default */
-        color: #333 !important;
+        background-color: #334155;
+        color: #FFFFFF !important;
+    }
+
+    .navbar-nav>li>a:hover,
+    .main-menu-link:hover a {
+        color: var(--clr-accent-hover) !important;
+        filter: drop-shadow(0 0 8px var(--clr-accent-glow));
     }
 
     @media (max-width: 767px) {
         nav {
-            background-color: black !important;
+            background: rgba(11, 15, 25, 0.96) !important;
         }
     }
 
     /* Collapse dropdown loses border in dark mode */
     .navbar-collapse.in .dropdown-menu {
-        border: none;
+        border: 1px solid var(--clr-border);
+    }
+
+    .navbar-collapse.in .dropdown-menu a,
+    .navbar-collapse.in .dropdown-menu a:hover {
+        color: var(--clr-text) !important;
+    }
+
+    /* Sparkline speed chart — neon emerald glow */
+    .sparkline-container svg polygon {
+        fill: rgba(16, 185, 129, 0.25);
+    }
+
+    .sparkline-container svg polyline {
+        stroke: var(--clr-emerald-light);
+        stroke-width: 1.5;
+        filter: drop-shadow(0 0 4px rgba(52, 211, 153, 0.45));
+    }
+
+    /* Cards & elevated surfaces */
+    .queue,
+    .history,
+    .queue-messages,
+    .main-notification-box {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    /* Dropdowns & Modals */
+    .dropdown-menu {
+        border: 1px solid var(--clr-border);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+        border-radius: var(--radius-md);
+    }
+
+    .modal-content {
+        border: 1px solid var(--clr-border);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+    }
+
+    .modal-header {
+        background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+        border-bottom: 1px solid var(--clr-border);
+    }
+
+    /* Buttons inside content & modals */
+    .main-content .btn-default,
+    .modal-body .btn-default,
+    .modal-footer .btn-default {
+        background-color: #1E293B;
+        border-color: #334155;
+        transition: all 0.2s ease;
+    }
+
+    .btn-default:not(.navbar-btn):hover,
+    .btn-default:not(.navbar-btn):active:focus {
+        background-color: #28354E;
+        border-color: var(--clr-accent);
+        color: #FFFFFF;
+        box-shadow: 0 0 12px var(--clr-accent-glow) !important;
+    }
+
+    .btn-danger {
+        background: linear-gradient(135deg, #E11D48 0%, #F43F5E 100%);
+        border-color: #FB7185;
+        box-shadow: 0 4px 12px rgba(244, 63, 94, 0.35) !important;
+    }
+
+    /* Progress bars — vibrant neon emerald & status gradients */
+    .progress {
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.55);
+    }
+
+    .progress>span,
+    .progress-bar>span,
+    .progress strong,
+    .progress i,
+    .progress .progress-bar .fileDetails,
+    #modal-item-files .item-files-table .progress small,
+    .fileControls a {
+        color: #F8FAFC !important;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+    }
+
+    .progress-bar-info {
+        background-color: var(--clr-emerald);
+        background-image: linear-gradient(90deg, #059669 0%, #10B981 60%, #34D399 100%);
+        box-shadow: 0 0 14px rgba(16, 185, 129, 0.4);
+    }
+
+    .progress-bar-info[style*="#58A9FA" i],
+    .progress-bar-info[style*="rgb(88, 169, 250)" i] {
+        background-color: var(--clr-accent) !important;
+        background-image: linear-gradient(90deg, #4F46E5 0%, #6366F1 60%, #818CF8 100%) !important;
+        box-shadow: 0 0 14px var(--clr-accent-glow) !important;
+    }
+
+    .progress-bar-info[style*="#F8A34E" i],
+    .progress-bar-info[style*="rgb(248, 163, 78)" i] {
+        background-color: var(--clr-amber) !important;
+        background-image: linear-gradient(90deg, #D97706 0%, #F59E0B 60%, #FBBF24 100%) !important;
+        box-shadow: 0 0 14px rgba(245, 158, 11, 0.4) !important;
+    }
+
+    .progress-bar-info[style*="#B7B7B7" i],
+    .progress-bar-info[style*="rgb(183, 183, 183)" i] {
+        background-color: #334155 !important;
+        background-image: linear-gradient(90deg, #334155 0%, #475569 100%) !important;
+        box-shadow: none !important;
+    }
+
+    /* Vibrant badges, labels, and status icons */
+    .label-warning {
+        background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+        color: #FFFFFF;
+        box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+    }
+
+    .label-info,
+    .table-messages .label-info,
+    .history-queue-swicher .badge-info {
+        background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%) !important;
+        color: #FFFFFF;
+        box-shadow: 0 2px 8px var(--clr-accent-glow);
+    }
+
+    .label-danger,
+    .history-queue-swicher .badge-warning {
+        background: linear-gradient(135deg, #E11D48 0%, #F43F5E 100%) !important;
+        color: #FFFFFF;
+        box-shadow: 0 2px 8px rgba(244, 63, 94, 0.35);
+    }
+
+    .history-item .glyphicon-ok {
+        color: var(--clr-emerald-light);
+        filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.4));
+    }
+
+    .hover-button.glyphicon-play,
+    .hover-button.glyphicon-forward {
+        color: var(--clr-emerald-light);
+    }
+
+    .processing-download > div {
+        background-color: var(--clr-accent-hover);
+    }
+
+    /* Pagination active state */
+    .pagination li.active a,
+    .pagination li.active span,
+    .pagination li.active a:hover,
+    .pagination li.active span:hover {
+        background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+        border-color: transparent;
+        color: #FFFFFF;
+        box-shadow: 0 2px 10px var(--clr-accent-glow);
     }
 
     /* Tab controls — dark-mode specific colours */
     .max-speed-input-clear,
-    .max-speed-input-clear:hover,
-    .fileControls a {
-        color: black;
+    .max-speed-input-clear:hover {
+        color: var(--clr-amber);
+    }
+
+    .nav-tabs {
+        border-bottom-color: var(--clr-border-subtle);
+    }
+
+    .nav-tabs>li>a:hover,
+    .nav-tabs>li>a:focus {
+        background-color: var(--clr-surface-hover);
+        color: #FFFFFF !important;
+        border-color: transparent;
     }
 
     .nav-tabs>li.active>a,
     .nav-tabs>li.active>a:focus,
-    .nav-tabs>li.active>a:hover,
-    .nav-tabs>li>a:hover,
-    .nav-tabs>li>a:focus {
-        background-color: #ddd;
-        color: #555 !important;
-        box-shadow: 0px -1px 1px 1px rgba(0, 0, 0, 0.15);
+    .nav-tabs>li.active>a:hover {
+        background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+        color: #FFFFFF !important;
+        border-color: transparent !important;
+        box-shadow: 0 4px 14px var(--clr-accent-glow);
     }
 
     /* Opacity */
@@ -2733,18 +2942,19 @@ html[data-color-scheme="night" i] {
         opacity: 0.65;
     }
 
-    /* Focus ring uses white glow in dark mode */
+    /* Focus ring uses vibrant indigo glow in dark mode */
     .form-control:focus,
     input[type="submit"]:focus,
     button:focus {
-        box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.3) !important;
+        border-color: var(--clr-accent) !important;
+        box-shadow: 0 0 0 3px var(--clr-accent-glow) !important;
         outline: initial;
     }
 
     /* Compact layout progress shadow boost */
     .container-compact .progress,
     .container-compact .queue .progress-bar {
-        box-shadow: inset 1px 0px 1px rgba(0, 0, 0, 1);
+        box-shadow: inset 1px 0px 1px rgba(0, 0, 0, 0.8);
     }
 
     /* Help table transparent bg override */
@@ -2759,7 +2969,7 @@ html[data-color-scheme="night" i] {
     }
 
     #modal-item-files .item-files-table {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid var(--clr-border-subtle);
     }
 
     /* History/queue tab switcher */
@@ -2934,6 +3144,15 @@ html[data-color-scheme="night" i] {
 
 @media (prefers-color-scheme: dark) {
     html:not([data-color-scheme="light" i]) {
+        /* Ambient dark-mode gradient glow on body */
+        body {
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.18), transparent),
+                radial-gradient(ellipse 60% 40% at 85% 20%, rgba(139, 92, 246, 0.10), transparent),
+                radial-gradient(ellipse 50% 40% at 15% 80%, rgba(16, 185, 129, 0.08), transparent);
+            background-attachment: fixed;
+        }
+
         /* Links and glyphicons inside links */
         a, a:active,
         a:hover,
@@ -2949,48 +3168,237 @@ html[data-color-scheme="night" i] {
             color: var(--clr-text);
         }
 
+        a:hover:not(.btn):not(.hover-button) {
+            color: var(--clr-accent-hover);
+        }
+
         /* Navbar needs structural dark-mode overrides */
         nav {
-            background-color: #444444 !important;
+            background: linear-gradient(135deg, rgba(22, 31, 53, 0.92) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--clr-border) !important;
             border-radius: var(--radius-lg);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
         }
 
         nav .btn {
-            background-color: #E4E4E4;
-            border-color: #5D5D5D !important;
+            background-color: #1E293B;
+            color: var(--clr-text) !important;
+            border-color: #334155 !important;
+            transition: all 0.2s ease;
+        }
+
+        nav .btn:hover,
+        nav .btn:focus,
+        nav .open > .dropdown-toggle.btn {
+            background-color: #28354E;
+            color: #FFFFFF !important;
+            border-color: var(--clr-accent) !important;
+            box-shadow: 0 0 12px var(--clr-accent-glow) !important;
         }
 
         nav .btn:active {
-            /* Restore bootstrap default */
-            color: #333 !important;
+            background-color: #334155;
+            color: #FFFFFF !important;
+        }
+
+        .navbar-nav>li>a:hover,
+        .main-menu-link:hover a {
+            color: var(--clr-accent-hover) !important;
+            filter: drop-shadow(0 0 8px var(--clr-accent-glow));
         }
 
         @media (max-width: 767px) {
             nav {
-                background-color: black !important;
+                background: rgba(11, 15, 25, 0.96) !important;
             }
         }
 
         /* Collapse dropdown loses border in dark mode */
         .navbar-collapse.in .dropdown-menu {
-            border: none;
+            border: 1px solid var(--clr-border);
+        }
+
+        .navbar-collapse.in .dropdown-menu a,
+        .navbar-collapse.in .dropdown-menu a:hover {
+            color: var(--clr-text) !important;
+        }
+
+        /* Sparkline speed chart — neon emerald glow */
+        .sparkline-container svg polygon {
+            fill: rgba(16, 185, 129, 0.25);
+        }
+
+        .sparkline-container svg polyline {
+            stroke: var(--clr-emerald-light);
+            stroke-width: 1.5;
+            filter: drop-shadow(0 0 4px rgba(52, 211, 153, 0.45));
+        }
+
+        /* Cards & elevated surfaces */
+        .queue,
+        .history,
+        .queue-messages,
+        .main-notification-box {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* Dropdowns & Modals */
+        .dropdown-menu {
+            border: 1px solid var(--clr-border);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+            border-radius: var(--radius-md);
+        }
+
+        .modal-content {
+            border: 1px solid var(--clr-border);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            border-bottom: 1px solid var(--clr-border);
+        }
+
+        /* Buttons inside content & modals */
+        .main-content .btn-default,
+        .modal-body .btn-default,
+        .modal-footer .btn-default {
+            background-color: #1E293B;
+            border-color: #334155;
+            transition: all 0.2s ease;
+        }
+
+        .btn-default:not(.navbar-btn):hover,
+        .btn-default:not(.navbar-btn):active:focus {
+            background-color: #28354E;
+            border-color: var(--clr-accent);
+            color: #FFFFFF;
+            box-shadow: 0 0 12px var(--clr-accent-glow) !important;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #E11D48 0%, #F43F5E 100%);
+            border-color: #FB7185;
+            box-shadow: 0 4px 12px rgba(244, 63, 94, 0.35) !important;
+        }
+
+        /* Progress bars — vibrant neon emerald & status gradients */
+        .progress {
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.55);
+        }
+
+        .progress>span,
+        .progress-bar>span,
+        .progress strong,
+        .progress i,
+        .progress .progress-bar .fileDetails,
+        #modal-item-files .item-files-table .progress small,
+        .fileControls a {
+            color: #F8FAFC !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+        }
+
+        .progress-bar-info {
+            background-color: var(--clr-emerald);
+            background-image: linear-gradient(90deg, #059669 0%, #10B981 60%, #34D399 100%);
+            box-shadow: 0 0 14px rgba(16, 185, 129, 0.4);
+        }
+
+        .progress-bar-info[style*="#58A9FA" i],
+        .progress-bar-info[style*="rgb(88, 169, 250)" i] {
+            background-color: var(--clr-accent) !important;
+            background-image: linear-gradient(90deg, #4F46E5 0%, #6366F1 60%, #818CF8 100%) !important;
+            box-shadow: 0 0 14px var(--clr-accent-glow) !important;
+        }
+
+        .progress-bar-info[style*="#F8A34E" i],
+        .progress-bar-info[style*="rgb(248, 163, 78)" i] {
+            background-color: var(--clr-amber) !important;
+            background-image: linear-gradient(90deg, #D97706 0%, #F59E0B 60%, #FBBF24 100%) !important;
+            box-shadow: 0 0 14px rgba(245, 158, 11, 0.4) !important;
+        }
+
+        .progress-bar-info[style*="#B7B7B7" i],
+        .progress-bar-info[style*="rgb(183, 183, 183)" i] {
+            background-color: #334155 !important;
+            background-image: linear-gradient(90deg, #334155 0%, #475569 100%) !important;
+            box-shadow: none !important;
+        }
+
+        /* Vibrant badges, labels, and status icons */
+        .label-warning {
+            background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+            color: #FFFFFF;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+        }
+
+        .label-info,
+        .table-messages .label-info,
+        .history-queue-swicher .badge-info {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%) !important;
+            color: #FFFFFF;
+            box-shadow: 0 2px 8px var(--clr-accent-glow);
+        }
+
+        .label-danger,
+        .history-queue-swicher .badge-warning {
+            background: linear-gradient(135deg, #E11D48 0%, #F43F5E 100%) !important;
+            color: #FFFFFF;
+            box-shadow: 0 2px 8px rgba(244, 63, 94, 0.35);
+        }
+
+        .history-item .glyphicon-ok {
+            color: var(--clr-emerald-light);
+            filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.4));
+        }
+
+        .hover-button.glyphicon-play,
+        .hover-button.glyphicon-forward {
+            color: var(--clr-emerald-light);
+        }
+
+        .processing-download > div {
+            background-color: var(--clr-accent-hover);
+        }
+
+        /* Pagination active state */
+        .pagination li.active a,
+        .pagination li.active span,
+        .pagination li.active a:hover,
+        .pagination li.active span:hover {
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            border-color: transparent;
+            color: #FFFFFF;
+            box-shadow: 0 2px 10px var(--clr-accent-glow);
         }
 
         /* Tab controls — dark-mode specific colours */
         .max-speed-input-clear,
-        .max-speed-input-clear:hover,
-        .fileControls a {
-            color: black;
+        .max-speed-input-clear:hover {
+            color: var(--clr-amber);
+        }
+
+        .nav-tabs {
+            border-bottom-color: var(--clr-border-subtle);
+        }
+
+        .nav-tabs>li>a:hover,
+        .nav-tabs>li>a:focus {
+            background-color: var(--clr-surface-hover);
+            color: #FFFFFF !important;
+            border-color: transparent;
         }
 
         .nav-tabs>li.active>a,
         .nav-tabs>li.active>a:focus,
-        .nav-tabs>li.active>a:hover,
-        .nav-tabs>li>a:hover,
-        .nav-tabs>li>a:focus {
-            background-color: #ddd;
-            color: #555 !important;
-            box-shadow: 0px -1px 1px 1px rgba(0, 0, 0, 0.15);
+        .nav-tabs>li.active>a:hover {
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            color: #FFFFFF !important;
+            border-color: transparent !important;
+            box-shadow: 0 4px 14px var(--clr-accent-glow);
         }
 
         /* Opacity */
@@ -3003,18 +3411,19 @@ html[data-color-scheme="night" i] {
             opacity: 0.65;
         }
 
-        /* Focus ring uses white glow in dark mode */
+        /* Focus ring uses vibrant indigo glow in dark mode */
         .form-control:focus,
         input[type="submit"]:focus,
         button:focus {
-            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.3) !important;
+            border-color: var(--clr-accent) !important;
+            box-shadow: 0 0 0 3px var(--clr-accent-glow) !important;
             outline: initial;
         }
 
         /* Compact layout progress shadow boost */
         .container-compact .progress,
         .container-compact .queue .progress-bar {
-            box-shadow: inset 1px 0px 1px rgba(0, 0, 0, 1);
+            box-shadow: inset 1px 0px 1px rgba(0, 0, 0, 0.8);
         }
 
         /* Help table transparent bg override */
@@ -3029,7 +3438,7 @@ html[data-color-scheme="night" i] {
         }
 
         #modal-item-files .item-files-table {
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid var(--clr-border-subtle);
         }
 
         /* History/queue tab switcher */
