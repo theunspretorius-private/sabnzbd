@@ -1,31 +1,29 @@
 :root {
-    /* Follow the OS by default (Auto); forced by data-color-scheme below */
-    color-scheme: light dark;
+    /* Force ultra-modern dark mode across all color scheme settings */
+    color-scheme: dark !important;
 
     /* Vibrant accent palette */
     --clr-accent:       #6366F1;
     --clr-accent-hover: #818CF8;
-    --clr-accent-glow:  rgba(99, 102, 241, 0.35);
+    --clr-accent-glow:  rgba(99, 102, 241, 0.42);
 
-    /* Color palette — light-dark(light value, dark value) */
-    --clr-page-bg:    light-dark(#E4E4E4, #0B0F19);
-    --clr-surface:    light-dark(#FFFFFF, #131B2E);
-    --clr-input-bg:   light-dark(#FFFFFF, #0F172A);
-    --clr-border:     light-dark(rgba(0, 0, 0, 0.15), rgba(99, 102, 241, 0.25));
-    --clr-text:       light-dark(#000000, #F1F5F9);
-    --clr-text-muted: light-dark(#636363, #94A3B8);
-    --radius-lg:      12px;
-    --clr-toggle-active:   light-dark(#f9ca33, #6366F1);
-    --clr-toggle-inactive: light-dark(#aaaaaa, #334155);
+    /* Color palette — always dark & vibrant */
+    --clr-page-bg:    #070B14;
+    --clr-surface:    #111827;
+    --clr-input-bg:   #0B1120;
+    --clr-border:     rgba(99, 102, 241, 0.32);
+    --clr-text:       #F8FAFC;
+    --clr-text-muted: #94A3B8;
+    --radius-lg:      16px;
+    --clr-toggle-active:   #6366F1;
+    --clr-toggle-inactive: #334155;
 }
 
-/* The server renders the configured scheme into this attribute; empty/unknown = Auto */
-html[data-color-scheme="light" i] {
-    color-scheme: light;
-}
-
+/* Enforce dark mode regardless of sabnzbd.ini web_color setting */
+html,
+html[data-color-scheme="light" i],
 html[data-color-scheme="night" i] {
-    color-scheme: dark;
+    color-scheme: dark !important;
 }
 
 body {
@@ -149,7 +147,7 @@ input[type="checkbox"]:focus-visible {
     be expressed as a color value. The two blocks below MUST stay identical:
     the first applies when Night is forced, the second when the OS is dark and Light is not forced.
 ***/
-html[data-color-scheme="night" i] {
+html {
     body {
         background-image:
             radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.22), transparent),

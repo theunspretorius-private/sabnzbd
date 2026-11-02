@@ -1,54 +1,53 @@
 :root {
-    /* Follow the OS by default (Auto); forced by data-color-scheme below */
-    color-scheme: light dark;
+    /* Force ultra-modern dark mode across all color scheme settings */
+    color-scheme: dark !important;
 
     /* Border radius scale */
-    --radius-sm:    6px;   /* dropdowns */
-    --radius-md:    8px;   /* inputs, buttons, section headers */
-    --radius-lg:    12px;  /* cards, modals */
+    --radius-sm:    8px;   /* dropdowns */
+    --radius-md:    10px;  /* inputs, buttons, section headers */
+    --radius-lg:    16px;  /* cards, modals */
 
     /* Vibrant accent palette */
     --clr-accent:          #6366F1;
     --clr-accent-hover:    #818CF8;
-    --clr-accent-glow:     rgba(99, 102, 241, 0.35);
+    --clr-accent-glow:     rgba(99, 102, 241, 0.42);
     --clr-emerald:         #10B981;
     --clr-emerald-light:   #34D399;
     --clr-amber:           #F59E0B;
 
-    /* Color palette — light-dark(light value, dark value) */
-    --clr-page-bg:         light-dark(#E4E4E4, #0B0F19);     /* body/page background */
-    --clr-surface:         light-dark(#FFFFFF, #131B2E);     /* cards/sections (.section, #addFeed, etc.) */
-    --clr-surface-alt:     light-dark(#F8F8F8, #1A243B);     /* alternating rows, .alt elements */
-    --clr-surface-hover:   light-dark(#f6f6f6, #243252);     /* hovered rows and buttons */
-    --clr-border:          light-dark(#dfdede, rgba(99, 102, 241, 0.22)); /* card/section borders */
-    --clr-border-subtle:   light-dark(#E5E5E5, #1E293B);     /* inner dividers (#subscriptions, data-row) */
-    --clr-text:            light-dark(#000000, #F1F5F9);     /* primary body text */
-    --clr-text-muted:      light-dark(#666666, #94A3B8);     /* secondary text (.col2 p, .feed-row td) */
-    --clr-error:           light-dark(red, #FB7185);         /* errors, failed items */
-    --clr-input-bg:        light-dark(#FFFFFF, #0F172A);     /* form inputs, buttons */
-    --clr-input-border:    light-dark(#d4d0c8, #2E3C56);     /* input borders */
-    --clr-toggle-active:   light-dark(#f9ca33, #6366F1);     /* accent color (toggles, focus rings) */
-    --clr-toggle-inactive: light-dark(#aaaaaa, #334155);     /* toggle track when off */
-    --clr-dropdown-bg:     light-dark(#FFFFFF, #162038);     /* dropdown menus */
-    --clr-modal-bg:        light-dark(#FFFFFF, #131B2E);     /* modal body/footer */
-    --clr-modal-header-bg: light-dark(#3C3C3C, #1E293B);     /* modal header (dark in both themes) */
-    --clr-table-bg:        light-dark(#FFFFFF, #131B2E);     /* table background */
-    --clr-table-row-alt:   light-dark(#F8F8F8, #172138);     /* alternating table row background */
+    /* Color palette — always dark & vibrant */
+    --clr-page-bg:         #070B14;                     /* body/page background */
+    --clr-surface:         #111827;                     /* cards/sections (.section, #addFeed, etc.) */
+    --clr-surface-alt:     #182238;                     /* alternating rows, .alt elements */
+    --clr-surface-hover:   #22304E;                     /* hovered rows and buttons */
+    --clr-border:          rgba(99, 102, 241, 0.28);    /* card/section borders */
+    --clr-border-subtle:   #1E293B;                     /* inner dividers (#subscriptions, data-row) */
+    --clr-text:            #F8FAFC;                     /* primary body text */
+    --clr-text-muted:      #94A3B8;                     /* secondary text (.col2 p, .feed-row td) */
+    --clr-error:           #FB7185;                     /* errors, failed items */
+    --clr-input-bg:        #0B1120;                     /* form inputs, buttons */
+    --clr-input-border:    #2E3C56;                     /* input borders */
+    --clr-toggle-active:   #6366F1;                     /* accent color (toggles, focus rings) */
+    --clr-toggle-inactive: #334155;                     /* toggle track when off */
+    --clr-dropdown-bg:     #131D33;                     /* dropdown menus */
+    --clr-modal-bg:        #111827;                     /* modal body/footer */
+    --clr-modal-header-bg: #1E293B;                     /* modal header */
+    --clr-table-bg:        #111827;                     /* table background */
+    --clr-table-row-alt:   #162036;                     /* alternating table row background */
 }
 
-/* The server renders the configured scheme into this attribute; empty/unknown = Auto */
-html[data-color-scheme="light" i] {
-    color-scheme: light;
-}
-
+/* Enforce dark mode regardless of sabnzbd.ini web_color setting */
+html,
+html[data-color-scheme="light" i],
 html[data-color-scheme="night" i] {
-    color-scheme: dark;
+    color-scheme: dark !important;
 }
 
 body {
     overflow-y: scroll;
     background-color: var(--clr-page-bg);
     color: var(--clr-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
 }
 
 /* Bootstrap's `a:focus { outline: 5px auto -webkit-focus-ring-color }` renders as a
@@ -1670,19 +1669,37 @@ html[dir="rtl"] .Scheduling form[data-form="add-schedule"] input[type="checkbox"
 }
 
 /***
-    Dark-mode structural rules
-    Colors live in the light-dark() tokens above; these are the rules that cannot
-    be expressed as a color value. The two blocks below MUST stay identical:
-    the first applies when Night is forced, the second when the OS is dark and Light is not forced.
+    Ultra-modern dark-mode structural rules
+    Applied unconditionally to html so the sleek dark theme is always active.
 ***/
-html[data-color-scheme="night" i] {
+html {
     /* Ambient dark-mode gradient glow on body */
     body {
         background-image:
-            radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.18), transparent),
-            radial-gradient(ellipse 60% 40% at 85% 20%, rgba(139, 92, 246, 0.10), transparent),
-            radial-gradient(ellipse 50% 40% at 15% 80%, rgba(16, 185, 129, 0.08), transparent);
+            radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99, 102, 241, 0.25), transparent),
+            radial-gradient(ellipse 60% 45% at 88% 18%, rgba(168, 85, 247, 0.16), transparent),
+            radial-gradient(ellipse 55% 45% at 12% 82%, rgba(16, 185, 129, 0.12), transparent);
         background-attachment: fixed;
+    }
+
+    .navbar-logo svg {
+        filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.55));
+    }
+
+    .navbar-logo svg path[fill="#FFB300" i] {
+        fill: #6366F1 !important;
+    }
+
+    .navbar-logo svg path[fill="#FFCA28" i] {
+        fill: #A855F7 !important;
+    }
+
+    .navbar-default {
+        background: linear-gradient(135deg, rgba(19, 28, 49, 0.94) 0%, rgba(11, 16, 30, 0.98) 100%) !important;
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border-bottom: 1px solid rgba(99, 102, 241, 0.35) !important;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55), inset 0 2px 0 #6366F1 !important;
     }
 
     /* Links use a vibrant indigo colour in dark mode */

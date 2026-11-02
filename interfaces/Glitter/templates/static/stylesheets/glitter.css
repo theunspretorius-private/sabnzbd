@@ -1,53 +1,55 @@
 :root {
-    /* Follow the OS by default (Auto); forced by data-color-scheme below */
-    color-scheme: light dark;
+    /* Force ultra-modern dark mode across all color scheme settings */
+    color-scheme: dark !important;
 
     /* Border radius scale */
-    --radius-sm: 6px;   /* small elements: progress bars */
-    --radius-md: 8px;   /* search bar, multi-edit toolbar, file controls */
-    --radius-lg: 12px;  /* cards, modals, notification box */
+    --radius-sm: 8px;   /* small elements: progress bars */
+    --radius-md: 10px;  /* search bar, multi-edit toolbar, file controls */
+    --radius-lg: 16px;  /* cards, modals, notification box */
 
     /* Vibrant accent palette */
     --clr-accent:         #6366F1;
     --clr-accent-hover:   #818CF8;
-    --clr-accent-glow:    rgba(99, 102, 241, 0.35);
+    --clr-accent-glow:    rgba(99, 102, 241, 0.42);
     --clr-emerald:        #10B981;
     --clr-emerald-light:  #34D399;
     --clr-amber:          #F59E0B;
+    --clr-cyan:           #38BDF8;
+    --clr-violet:         #A855F7;
 
-    /* Color palette — light-dark(light value, dark value) */
-    --clr-page-bg:        light-dark(#E4E4E4, #0B0F19);              /* body/page background */
-    --clr-surface:        light-dark(#FFFFFF, #131B2E);              /* cards, modals, notification box */
-    --clr-surface-alt:    light-dark(#F9F9F9, #1A243B);              /* multi-edit toolbar, alternating rows */
-    --clr-surface-hover:  light-dark(#f6f6f6, #243252);              /* hovered rows, inputs, buttons */
-    --clr-border:         light-dark(rgba(0,0,0,0.12), rgba(99, 102, 241, 0.22)); /* card outlines */
-    --clr-border-subtle:  light-dark(#EBEBEB, #1E293B);              /* table row separators, inner borders */
-    --clr-text:           light-dark(#333333, #F1F5F9);              /* primary body text */
-    --clr-text-muted:     light-dark(#888888, #94A3B8);              /* secondary / dimmed text */
-    --clr-error:          light-dark(red, #FB7185);                  /* errors, failed downloads */
-    --clr-input-bg:       light-dark(#FFFFFF, #0F172A);              /* form inputs, buttons */
-    --clr-input-border:   light-dark(#CCCCCC, #2E3C56);              /* input/search borders */
-    --clr-dropdown-bg:    light-dark(#FFFFFF, #162038);              /* dropdown menus */
-    --clr-modal-bg:       light-dark(#FFFFFF, #131B2E);              /* modal body/footer */
-    --clr-table-bg:       light-dark(#F5F5F5, #131B2E);              /* table and even-row background */
-    --clr-table-row-alt:  light-dark(#FDFDFD, #172138);              /* odd striped row background */
-    --clr-progress-track: light-dark(#f6f6f6, #0B0F19);              /* progress bar track */
-    --clr-toggle-active:   light-dark(#f9ca33, #6366F1);             /* toggle knob track: on  */
-    --clr-toggle-inactive: light-dark(#aaaaaa, #334155);             /* toggle knob track: off */
+    /* Color palette — always dark & vibrant */
+    --clr-page-bg:        #070B14;                        /* deep midnight body background */
+    --clr-surface:        #111827;                        /* cards, modals, notification box */
+    --clr-surface-alt:    #182238;                        /* multi-edit toolbar, alternating rows */
+    --clr-surface-hover:  #22304E;                        /* hovered rows, inputs, buttons */
+    --clr-border:         rgba(99, 102, 241, 0.28);       /* glowing indigo card outlines */
+    --clr-border-subtle:  #1E293B;                        /* table row separators, inner borders */
+    --clr-text:           #F8FAFC;                        /* primary body text */
+    --clr-text-muted:     #94A3B8;                        /* secondary / dimmed text */
+    --clr-error:          #FB7185;                        /* errors, failed downloads */
+    --clr-input-bg:       #0B1120;                        /* form inputs, buttons */
+    --clr-input-border:   #2E3C56;                        /* input/search borders */
+    --clr-dropdown-bg:    #131D33;                        /* dropdown menus */
+    --clr-modal-bg:       #111827;                        /* modal body/footer */
+    --clr-table-bg:       #111827;                        /* table and even-row background */
+    --clr-table-row-alt:  #162036;                        /* odd striped row background */
+    --clr-progress-track: #070B14;                        /* progress bar track */
+    --clr-toggle-active:   #6366F1;                       /* toggle knob track: on  */
+    --clr-toggle-inactive: #334155;                       /* toggle knob track: off */
 }
 
-/* The server renders the configured scheme into this attribute (main.tmpl); empty/unknown = Auto */
-html[data-color-scheme="light" i] {
-    color-scheme: light;
-}
-
+/* Enforce dark mode regardless of sabnzbd.ini web_color setting */
+html,
+html[data-color-scheme="light" i],
 html[data-color-scheme="night" i] {
-    color-scheme: dark;
+    color-scheme: dark !important;
 }
 
 body {
     background-color: var(--clr-page-bg);
     color: var(--clr-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    letter-spacing: -0.01em;
 }
 
 h2 {
@@ -2669,19 +2671,36 @@ h2 small {
 }
 
 /***
-    Dark-mode structural rules
-    Colors live in the light-dark() tokens above; these are the rules that cannot
-    be expressed as a color value. The two blocks below MUST stay identical:
-    the first applies when Night is forced, the second when the OS is dark and Light is not forced.
+    Ultra-modern dark-mode structural rules
+    Applied unconditionally to html so the sleek dark theme is always active.
 ***/
-html[data-color-scheme="night" i] {
+html {
     /* Ambient dark-mode gradient glow on body */
     body {
         background-image:
-            radial-gradient(ellipse 80% 50% at 50% -15%, rgba(99, 102, 241, 0.18), transparent),
-            radial-gradient(ellipse 60% 40% at 85% 20%, rgba(139, 92, 246, 0.10), transparent),
-            radial-gradient(ellipse 50% 40% at 15% 80%, rgba(16, 185, 129, 0.08), transparent);
+            radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99, 102, 241, 0.25), transparent),
+            radial-gradient(ellipse 60% 45% at 88% 18%, rgba(168, 85, 247, 0.16), transparent),
+            radial-gradient(ellipse 55% 45% at 12% 82%, rgba(16, 185, 129, 0.12), transparent);
         background-attachment: fixed;
+    }
+
+    /* Vibrant electric indigo/violet SABnzbd logo in navbar */
+    .navbar-logo svg {
+        filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.55));
+        transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .navbar-logo:hover svg {
+        transform: scale(1.06);
+        filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.75));
+    }
+
+    .navbar-logo svg path[fill="#FFB300" i] {
+        fill: #6366F1 !important;
+    }
+
+    .navbar-logo svg path[fill="#FFCA28" i] {
+        fill: #A855F7 !important;
     }
 
     /* Links and glyphicons inside links */
@@ -2705,19 +2724,32 @@ html[data-color-scheme="night" i] {
 
     /* Navbar needs structural dark-mode overrides */
     nav {
-        background: linear-gradient(135deg, rgba(22, 31, 53, 0.92) 0%, rgba(15, 23, 42, 0.95) 100%) !important;
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid var(--clr-border) !important;
+        background: linear-gradient(135deg, rgba(19, 28, 49, 0.92) 0%, rgba(11, 16, 30, 0.96) 100%) !important;
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        border: 1px solid rgba(99, 102, 241, 0.35) !important;
         border-radius: var(--radius-lg);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), inset 0 2px 0 #6366F1 !important;
+        padding: 4px 6px;
     }
 
     nav .btn {
-        background-color: #1E293B;
+        background-color: #1A2540;
         color: var(--clr-text) !important;
-        border-color: #334155 !important;
+        border-color: rgba(99, 102, 241, 0.3) !important;
         transition: all 0.2s ease;
+    }
+
+    nav .navbar-speed {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(5, 150, 105, 0.10) 100%) !important;
+        border-color: rgba(16, 185, 129, 0.45) !important;
+        color: var(--clr-emerald-light) !important;
+        text-shadow: 0 0 10px rgba(52, 211, 153, 0.35);
+    }
+
+    nav .navbar-timeleft {
+        color: #A5B4FC !important;
+        background: rgba(99, 102, 241, 0.14) !important;
     }
 
     nav .btn:hover,
@@ -2726,7 +2758,7 @@ html[data-color-scheme="night" i] {
         background-color: #28354E;
         color: #FFFFFF !important;
         border-color: var(--clr-accent) !important;
-        box-shadow: 0 0 12px var(--clr-accent-glow) !important;
+        box-shadow: 0 0 14px var(--clr-accent-glow) !important;
     }
 
     nav .btn:active {
@@ -2758,13 +2790,70 @@ html[data-color-scheme="night" i] {
 
     /* Sparkline speed chart — neon emerald glow */
     .sparkline-container svg polygon {
-        fill: rgba(16, 185, 129, 0.25);
+        fill: rgba(16, 185, 129, 0.28);
     }
 
     .sparkline-container svg polyline {
         stroke: var(--clr-emerald-light);
-        stroke-width: 1.5;
-        filter: drop-shadow(0 0 4px rgba(52, 211, 153, 0.45));
+        stroke-width: 1.8;
+        filter: drop-shadow(0 0 5px rgba(52, 211, 153, 0.55));
+    }
+
+    /* Section headers — vibrant gradient typography */
+    .queue h2,
+    .history h2,
+    .queue-messages h2 {
+        background: linear-gradient(90deg, #FFFFFF 0%, #A5B4FC 55%, #38BDF8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+    }
+
+    /* Info container status pills */
+    .info-container-box {
+        background: rgba(24, 34, 56, 0.85);
+        border: 1px solid rgba(99, 102, 241, 0.24);
+        border-radius: 999px;
+        padding: 4px 12px;
+        color: #E2E8F0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .info-container-box .glyphicon {
+        color: var(--clr-accent-hover);
+        margin-right: 4px;
+    }
+
+    /* Empty queue action cards */
+    .no-downloads-actions a {
+        border: 1px dashed rgba(99, 102, 241, 0.45);
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.05) 100%);
+        padding: 12px 16px;
+        color: #A5B4FC !important;
+        opacity: 0.9;
+        transition: all 0.2s ease;
+    }
+
+    .no-downloads-actions a:hover {
+        border-color: var(--clr-accent-hover);
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.18) 0%, rgba(168, 85, 247, 0.12) 100%);
+        color: #FFFFFF !important;
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+        transform: translateY(-1px);
+    }
+
+    /* Table rows & hover accent */
+    .queue-table tbody tr:hover td,
+    .history-table tbody tr:hover td {
+        background-color: rgba(99, 102, 241, 0.12) !important;
+    }
+
+    .queue-table tbody tr:hover td:first-child,
+    .history-table tbody tr:hover td:first-child {
+        box-shadow: inset 3px 0 0 var(--clr-accent);
     }
 
     /* Cards & elevated surfaces */
@@ -2772,7 +2861,10 @@ html[data-color-scheme="night" i] {
     .history,
     .queue-messages,
     .main-notification-box {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        background: linear-gradient(180deg, rgba(19, 27, 46, 0.95) 0%, rgba(11, 16, 30, 0.98) 100%);
+        border: 1px solid rgba(99, 102, 241, 0.28);
+        padding: 16px 18px 8px;
+        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
     }
 
     /* Dropdowns & Modals */
