@@ -1,20 +1,21 @@
 services:
-  sabnzbd:
-    # Replace <owner>/<repo> with your lowercase GitHub username and repository name
-    image: ghcr.io/<owner>/<repo>:latest
-    container_name: sabnzbd
+  sabnzb:
+    image: ghcr.io/theunspretorius-private/sabnzbd:latest
+    container_name: sabnzb
     restart: unless-stopped
+    working_dir: /skobbejak
+    networks:
+      - media
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
-      - UMASK=002
-      # Optional: comma-separated NAS hostnames allowed to access the web UI
-      # - HOST_WHITELIST=nas,nas.local
+      - TZ=Africa/Johannesburg
     ports:
       - "8080:8080"
     volumes:
-      - ./config:/config
-      - ./downloads:/downloads
-      - ./incomplete-downloads:/incomplete-downloads
+      - /volume1/Multimedia/config/sabnzb:/config
+      - /volume1/Multimedia:/skobbejak
 
+networks:
+  media:
+    external: true

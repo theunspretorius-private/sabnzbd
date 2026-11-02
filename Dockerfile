@@ -10,7 +10,8 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PUID=1000 \
     PGID=1000 \
     TZ=UTC \
-    PORT=8080
+    PORT=8080 \
+    WEB_COLOR=Night
 
 # Enable contrib & non-free repositories for official unrar and install runtime tools
 RUN if [ -f /etc/apt/sources.list.d/debian.sources ]; then \
@@ -59,10 +60,23 @@ if [ -n "${UMASK}" ]; then\n\
 fi\n\
 \n\
 mkdir -p /config /downloads /incomplete-downloads\n\
+export HOME=/config\n\
+\n\
+if ! getent group "${PGID}" >/dev/null 2>&1; then\n\
+    groupadd -g "${PGID}" sabnzbd 2>/dev/null || true\n\
+fi\n\
+if ! getent passwd "${PUID}" >/dev/null 2>&1; then\n\
+    useradd -u "${PUID}" -g "${PGID}" -d /config -s /bin/sh -M sabnzbd 2>/dev/null || true\n\
+fi\n\
+\n\
 chown -R "${PUID}:${PGID}" /config\n\
 \n\
 # Ensure download dirs are writable when newly created\n\
 chown "${PUID}:${PGID}" /downloads /incomplete-downloads 2>/dev/null || true\n\
+\n\
+if [ -n "${WEB_COLOR}" ] && [ -f /config/sabnzbd.ini ]; then\n\
+    sed -i "s/^web_color =.*/web_color = ${WEB_COLOR}/" /config/sabnzbd.ini\n\
+fi\n\
 \n\
 if [ -n "${HOST_WHITELIST}" ] && [ -f /config/sabnzbd.ini ]; then\n\
     sed -i "s/^host_whitelist =.*/host_whitelist = ${HOST_WHITELIST}/" /config/sabnzbd.ini\n\
